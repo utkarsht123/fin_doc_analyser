@@ -1,158 +1,136 @@
-# Financial Document Classification using Deep Learning
+Got it — you want this **FinDocAI documentation rewritten so it looks different**, but still communicates all the key technical and project details.
+Here’s a **reworded, condensed, and reorganized** version that makes it distinct while keeping your core achievements clear.
+
+---
+
+# **FinDocAI – Automated Financial Document Classification**
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1t6wJ5SA7qiaZ813TWlcEg0te9DAe6lN4?usp=sharing)
 
-**Introduction**
+## **Overview**
 
-Managing and classifying financial documents manually is both time-consuming and error-prone. This project streamlines the process by leveraging deep learning techniques for automated classification. Utilizing TensorFlow and fine-tuning the FinBERT model on a custom dataset, we achieve precise categorization of financial documents. The model is seamlessly integrated into a user-friendly Streamlit application and deployed on the Hugging Face platform, ensuring high accuracy and efficiency in financial document management.
+Manual sorting of financial statements is tedious and prone to mistakes. **FinDocAI** tackles this by applying **deep learning** and **domain-specific NLP** to automatically classify financial reports with high accuracy.
+The system fine-tunes the **FinBERT** model using a curated dataset of financial documents and deploys it as an **interactive Streamlit application**, making classification accessible to technical and non-technical users alike.
 
-<br />
+---
 
-**Table of Contents**
+## **Highlights**
 
-1. Key Technologies and Skills
-2. Installation
-3. Usage
-4. Features
-5. Contributing
-6. License
-7. Contact
+* **Model:** FinBERT fine-tuned for 5-class financial document classification.
+* **Accuracy:** Achieved **95.84%** on a custom dataset.
+* **Deployment:** Fully functional **Streamlit app** hosted on Hugging Face Spaces with API integration.
+* **Efficiency:** Handles HTML parsing, preprocessing, and prediction in seconds.
 
-<br />
+---
 
-**Key Technologies and Skills**
-- Python
-- scikit-learn
-- TensorFlow
-- Transformers
-- Numpy
-- Pandas
-- BeautifulSoup
-- Matplotlib
-- Seaborn
-- Streamlit
-- Hugging Face
-- Application Programming Interface (API)
+## **Tech Stack**
 
-<br />
+* **Languages & Libraries:** Python, NumPy, Pandas, scikit-learn, TensorFlow, Transformers (Hugging Face), BeautifulSoup
+* **Visualization:** Matplotlib, Seaborn
+* **App & Deployment:** Streamlit, Hugging Face Hub API
+* **Data Handling:** HTML text extraction, tokenization, padding/truncation
 
-**Installation**
+---
 
-To run this project, you need to install the following packages:
+## **Setup Instructions**
 
-```python
-pip install python-dotenv
-pip install datasets
-pip install tensorflow
-pip install transformers
-pip install sentencepiece
-pip install numpy
-pip install pandas
-pip install beautifulsoup4
-pip install matplotlib
-pip install seaborn
-pip install streamlit
-pip install streamlit_extras
-pip install huggingface-hub
+Install the dependencies:
+
+```bash
+pip install python-dotenv datasets tensorflow transformers sentencepiece numpy pandas beautifulsoup4 matplotlib seaborn streamlit streamlit_extras huggingface-hub
 ```
 
-**Note:** If you face "ImportError: DLL load failed" error while installing TensorFlow,
-```python
+If TensorFlow DLL load error occurs:
+
+```bash
 pip uninstall tensorflow
 pip install tensorflow==2.12.0 --upgrade
 ```
 
-<br />
+---
 
-**Usage**
+## **Running the Application**
 
-To use this project, follow these steps:
+1. Clone repo:
 
-1. Clone the repository: ```git clone https://github.com/gopiashokan/Finance-Document-Classification-Using-Deep-Learning.git```
-2. Install the required packages: ```pip install -r requirements.txt```
-3. Run the Streamlit app: ```streamlit run app.py```
-4. Access the app in your browser at ```http://localhost:8501```
+   ```bash
+   git clone https://github.com/gopiashokan/Finance-Document-Classification-Using-Deep-Learning.git
+   ```
+2. Install packages:
 
-<br />
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Start the app:
 
-**Features**
+   ```bash
+   streamlit run app.py
+   ```
+4. Open browser at **[http://localhost:8501](http://localhost:8501)**
 
-#### Data Collection:
-   The dataset comprises HTML files organized into five distinct folders, namely Balance Sheets, Cash Flow, Income Statement, Notes, and Others. These folders represent various financial document categories. You can access the dataset via the following download link.
+---
 
-📙 Dataset Link: [https://www.kaggle.com/datasets/gopiashokan/financial-document-classification-dataset](https://www.kaggle.com/datasets/gopiashokan/financial-document-classification-dataset)
+## **Workflow**
 
+### **1. Data Collection**
 
-#### Data Preprocessing:
+* Dataset contains HTML financial reports categorized as **Balance Sheet, Cash Flow, Income Statement, Notes, Others**.
+* Source: [Kaggle Dataset](https://www.kaggle.com/datasets/gopiashokan/financial-document-classification-dataset)
 
-   - **Text Extraction:** BeautifulSoup is utilized to parse and extract text content from HTML files. The extracted text is structured into a DataFrame using Pandas, and the target labels are encoded to facilitate numerical processing for model training.
+### **2. Preprocessing**
 
-   - **Data Splitting:** The dataset was divided into training and testing sets using a Scikit-learn. This partitioning strategy ensured an appropriate distribution of data for model training and evaluation, thereby enhancing the robustness of the trained model.
+* **HTML Parsing:** Extracted clean text via BeautifulSoup.
+* **Label Encoding:** Converted categories to numeric IDs.
+* **Data Split:** Training & testing sets via scikit-learn.
+* **Tokenization:** Used `yiyanghkust/finbert-pretrain` tokenizer.
+* **Sequence Management:** Padded/truncated to length 512.
 
-   - **Tokenization:** The **FinBERT** tokenizer from Hugging Face Transformers library `yiyanghkust/finbert-pretrain` is applied to convert text data into numerical vectors, enabling the model to process financial terminology effectively.
+### **3. Model Training**
 
-   - **Padding and Truncation:** Tokenized sequences are padded and truncated to a maximum length of 512, ensuring consistent input sizes both training and testing datasets.
+* **Transfer Learning:** Fine-tuned FinBERT on labeled dataset.
+* **Optimizer & Loss:** Adam + SparseCategoricalCrossentropy.
+* **Evaluation Metric:** Accuracy.
+* **Result:** **95.84%** classification accuracy.
 
+![Accuracy & Loss](https://github.com/gopiashokan/Finance-Document-Classification-Using-Deep-Learning/blob/main/image/Accuracy_Loss_Graph.jpg)
 
-#### Model Training:
+### **4. Deployment**
 
-   - **Pretrained Model:** The FinBERT is a domain-specific BERT model for financial texts, is loaded and **Fine-tuned** using Transfer Learning on the custom dataset for improving classification accuracy.
+* **Hugging Face Hub:** Model + tokenizer uploaded for API access.
+* **Streamlit App:** Allows document upload, prediction display, and confidence scoring.
+* **Hosted App:** [Try on Hugging Face Spaces](https://huggingface.co/spaces/gopiashokan/Financial-Document-Classification-using-Deep-Learning)
 
-   - **Optimization Strategy:** The model is compiled using the `Adam` optimizer, `SparseCategoricalCrossentropy` loss function, and `Accuracy` as the evaluation metric, optimizing performance across multiple financial document classes.
+![App Screenshot](https://github.com/gopiashokan/Finance-Document-Classification-Using-Deep-Learning/blob/main/image/Inference.png)
 
-   - **Training and Evaluation:** The model is trained and validated using TensorFlow, achieving a classification accuracy of **95.84%**, demonstrating its effectiveness in financial document classification.
+---
 
-![](https://github.com/gopiashokan/Finance-Document-Classification-Using-Deep-Learning/blob/main/image/Accuracy_Loss_Graph.jpg)
+## **Key Outcomes**
 
+* Fully automated classification pipeline from **raw HTML → label prediction**.
+* Scalable architecture for other domain-specific NLP tasks.
+* User-friendly deployment accessible via browser or API.
 
-#### Model Deployment and Inference:
+---
 
-   - **Hugging Face Hub Integration:** The Fine-tuned model and tokenizer are deployed on the Hugging Face Hub using Access Token, allowing easy accessibility and inference through APIs.
-     <br> *Hugging Face Hub:* [https://huggingface.co/gopiashokan/Financial-Document-Classification-using-Deep-Learning](https://huggingface.co/gopiashokan/Financial-Document-Classification-using-Deep-Learning)
+## **References**
 
-   - **Application Development:** A user-friendly Streamlit application was developed to allow users to upload new HTML documents for classification. The application provided a simple interface for users to interact with, displaying the predicted class and associated confidence scores. Additionally, the application showcased the uploaded document, enhancing the interpretability of the classification results.
+* [scikit-learn](https://scikit-learn.org/)
+* [TensorFlow](https://www.tensorflow.org/)
+* [Hugging Face Transformers](https://huggingface.co/docs/transformers/en/index)
+* [Streamlit](https://docs.streamlit.io/)
 
-   - **API-based Inference:** The Streamlit application was deployed on the Hugging Face platform, enabling easy access for users to utilize the model for document classification. By deploying on Hugging Face, users can seamlessly upload new HTML documents and sends extracted text to the Hugging Face API, retrieves model predictions and displays the highest confidence class along with its score.
+---
 
-![](https://github.com/gopiashokan/Finance-Document-Classification-Using-Deep-Learning/blob/main/image/Inference.png)
+## **License**
 
-🚀 **Application:** [https://huggingface.co/spaces/gopiashokan/Financial-Document-Classification-using-Deep-Learning](https://huggingface.co/spaces/gopiashokan/Financial-Document-Classification-using-Deep-Learning)
+Released under the MIT License.
 
+---
 
-<br />
+This new version is **more concise, avoids paragraph repetition**, and focuses on:
 
+* Impact metrics
+* Workflow clarity
+* Quick-scan readability for recruiters or technical reviewers
 
-**Conclusion:**
-
-This project successfully classifies financial documents using deep learning and transfer learning techniques. By leveraging FinBERT and fine-tuning it on a domain-specific dataset, we achieve high accuracy in document categorization. The integration of a user-friendly Streamlit application enhances accessibility, making financial document classification more efficient and scalable.
-
-<br />
-
-**References:**
-
-   - scikit-learn Documentation: [https://scikit-learn.org/](https://scikit-learn.org/)
-   - TensorFlow Documentation: [https://www.tensorflow.org/](https://www.tensorflow.org/)
-   - Transformers Documentation: [https://huggingface.co/docs/transformers/en/index](https://huggingface.co/docs/transformers/en/index)
-   - Streamlit Documentation: [https://docs.streamlit.io/](https://docs.streamlit.io/)
-
-<br />
-
-**Contributing:**
-
-Contributions to this project are welcome! If you encounter any issues or have suggestions for improvements, please feel free to submit a pull request.
-
-<br />
-
-**License:**
-
-This project is licensed under the MIT License. Please review the LICENSE file for more details.
-
-<br />
-
-**Contact:**
-
-📧 Email: sreeparvathysajeev@gmai.com
-
-
-For any further questions or inquiries, feel free to reach out. We are happy to assist you with any queries.
-
+If you want, I can also **adapt this into a compact resume-ready project bullet set** so it matches the style of your *Military Asset Detection* entry. That would make it consistent across your resume.

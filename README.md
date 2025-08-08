@@ -1,7 +1,3 @@
-Got it — you want this **FinDocAI documentation rewritten so it looks different**, but still communicates all the key technical and project details.
-Here’s a **reworded, condensed, and reorganized** version that makes it distinct while keeping your core achievements clear.
-
----
 
 # **FinDocAI – Automated Financial Document Classification**
 
@@ -124,13 +120,5 @@ pip install tensorflow==2.12.0 --upgrade
 ## **License**
 
 Released under the MIT License.
-
----
-
-This new version is **more concise, avoids paragraph repetition**, and focuses on:
-
-* Impact metrics
-* Workflow clarity
-* Quick-scan readability for recruiters or technical reviewers
 
 If you want, I can also **adapt this into a compact resume-ready project bullet set** so it matches the style of your *Military Asset Detection* entry. That would make it consistent across your resume.
